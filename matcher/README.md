@@ -5,31 +5,37 @@ This is assignment 4 for DSAN5400
 
 
 """
-# Name Matcher
+# Name Matching Evaluation Project
 
-This project implements various name matching algorithms to determine if two names refer to the same entity.
-
-## Installation
-
-```bash
-pip install -e .
-```
+This project provides a set of name matching scorers and evaluates their performance using various metrics such as precision, recall, and F1 score. The project supports exact matching, Jaccard similarity, Levenshtein distance, and TF-IDF-based cosine similarity scoring. It also provides functionality to split datasets and perform evaluation with customizable parameters.
 
 ## Usage
 
-```bash
-python -m matcher.bin.main -f data/annotated-index.tsv -s jaccard -e -p
-```
+Main Script:
+The main script main.py is used to run the name matching evaluation. 
+Below are the available arguments:
 
-Arguments:
-- `-f, --file`: Path to dataset
-- `-s, --scorer`: Scoring algorithm (exact/jaccard/levenshtein/tfidf)
-- `-e, --evaluate`: Evaluate results
-- `-p, --print`: Print results
+-f, --file (Required): Path to the dataset (e.g., queries.tsv).
+-s, --scorer (Required): Scoring algorithm to use. Options: exact, jaccard, levenshtein, tfidf.
+-e, --evaluate: Flag to evaluate the results after processing.
+-p, --print: Flag to print the results to a file.
+--split: Flag to split the dataset into training and test sets.
+-o, --output: Path to save the results.
 
-## Running Tests
 
-```bash
-pytest
-```
-"""
+Example Usage:
+
+python bin/main.py -f data/queries.tsv -s jaccard -e -p --split
+
+## Data Format
+
+The input data file (queries.tsv) should be in the following format:
+name1  name2  score
+"John"  "John"  1.0
+"John"  "jane"  0.0
+
+The output file (results.tsv) will contain the following columns:
+Name1    Name2    True_Label    Predicted_Score    Scorer
+"John"   "John"   1.0           1.0                "exact"
+
+

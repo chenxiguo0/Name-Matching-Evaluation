@@ -1,5 +1,5 @@
 import pytest
-from matcher.matcher.name_matcher import ExactMatchScorer, JaccardScorer, LevenshteinScorer, TfidfScorer
+from matcher.name_matcher import ExactMatchScorer, JaccardScorer, LevenshteinScorer, TfidfScorer
 
 def test_exact_match():
     scorer = ExactMatchScorer("John", "John")

@@ -3,6 +3,7 @@ import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from Levenshtein import ratio
 from sklearn.metrics.pairwise import cosine_similarity
+from jellyfish import jaro_winkler_similarity as jaro_winkler
 
 class NameMatchScorer:
     """Interface for scoring putative name matches"""
@@ -56,3 +57,8 @@ class TfidfScorer(NameMatchScorer):
         # Fit and transform on both names
         tfidf_matrix = self.vectorizer.fit_transform([name1.lower(), name2.lower()])
         return cosine_similarity(tfidf_matrix[0:1], tfidf_matrix[1:2])[0][0]
+    
+class JaroWinklerScorer(NameMatchScorer):
+    """Jaro-Winkler similarity implementation"""
+    def score(self, name1, name2):
+        return jaro_winkler(name1.lower(), name2.lower())
