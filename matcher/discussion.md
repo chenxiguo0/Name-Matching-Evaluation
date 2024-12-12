@@ -13,7 +13,7 @@ Note: I have randomly sampled 10% of the data from both the training and test se
 | Jaccard       | 0.002     | 0.750   | 0.003    |
 | Levenshtein   | 0.035     | 0.750   | 0.067    |
 | Cosine (TFIDF)| 0.923     | 0.600   | 0.727    |
-| Cosine (TFIDF)| 0.001     | 0.800   | 0.001    |
+| Jaro-Winkler  | 0.001     | 0.800   | 0.001    |
 
 ## D: 
 
